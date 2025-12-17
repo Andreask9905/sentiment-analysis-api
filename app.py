@@ -3,6 +3,19 @@ from flask import Flask, request, jsonify
 from model import predict_sentiment
 
 app = Flask(__name__)
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "status": "ok",
+        "message": "Sentiment Analysis API is running 🚀",
+        "usage": {
+            "endpoint": "/predict",
+            "method": "POST",
+            "body": {
+                "text": "Your text here"
+            }
+        }
+    })
 
 @app.route("/predict", methods=["POST"])
 def predict():
